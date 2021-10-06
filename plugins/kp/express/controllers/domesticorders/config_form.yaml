@@ -1,0 +1,10 @@
+name: DomesticOrders
+form: $/kp/express/models/domesticorder/fields.yaml
+modelClass: KP\Express\Models\DomesticOrder
+defaultRedirect: kp/express/domesticorders
+create:
+    redirect: 'kp/express/domesticorders/update/:id'
+    redirectClose: kp/express/domesticorders
+update:
+    redirect: kp/express/domesticorders
+    redirectClose: kp/express/domesticorders

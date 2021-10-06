@@ -1,0 +1,36 @@
+plugin:
+    name: 'kp.express::lang.plugin.name'
+    description: 'kp.express::lang.plugin.description'
+    author: 'Kang Paket'
+    icon: oc-icon-truck
+    homepage: ''
+permissions:
+    kp_express_regions:
+        tab: 'Master Data'
+        label: Wilayah
+    kp_express_vendors:
+        tab: 'Master Data'
+        label: kp_express_vendors
+    kp_express_branches:
+        tab: 'Master Data'
+        label: kp_express_branches
+    kp_express_routes:
+        tab: 'Master Data'
+        label: kp_express_routes
+    kp_express_access_domestic_orders:
+        tab: 'Master Data'
+        label: kp_express_access_domestic_order
+navigation:
+    main-menu-item:
+        label: 'Menu Item'
+        icon: icon-life-ring
+        url: /
+        sideMenu:
+            regions:
+                label: Wilayah
+                url: kp/express/vendors
+                icon: icon-sitemap
+    main-menu-item2:
+        label: 'Menu Item'
+        url: kp/express/domesticorders
+        icon: icon-life-ring

@@ -1,0 +1,12 @@
+list: $/kp/express/models/domesticorder/columns.yaml
+modelClass: KP\Express\Models\DomesticOrder
+title: DomesticOrders
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'kp/express/domesticorders/update/:id'

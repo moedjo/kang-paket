@@ -1,0 +1,16 @@
+1.0.1:
+    - 'Initialize plugin.'
+    - builder_table_create_kp_express_regions.php
+    - builder_table_create_kp_express_vendors.php
+    - builder_table_create_kp_express_branches.php
+    - builder_table_create_kp_express_customers.php
+    - builder_table_create_kp_express_orders.php
+    - builder_table_create_kp_express_routes.php
+    - builder_table_create_kp_express_services.php
+    - builder_table_create_kp_express_international_orders.php
+    - builder_table_create_kp_express_domestic_orders.php
+    - builder_table_create_kp_express_domestic_prices.php
+    - builder_table_create_kp_express_international_prices.php
+    - builder_table_create_kp_express_partners.php
+    - builder_table_create_kp_express_commisions.php
+    - builder_table_create_kp_express_balances.php

@@ -1,0 +1,5 @@
+fields:
+    order[receipt_number]:
+        label: Text
+        span: auto
+        type: text

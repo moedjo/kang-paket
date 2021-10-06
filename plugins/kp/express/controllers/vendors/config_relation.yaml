@@ -1,0 +1,8 @@
+branches:
+    label: 'Brand'
+    manage:
+        form: $/kp/express/models/branch/fields.yaml
+        list: $/kp/express/models/branch/columns.yaml
+    view:
+        list: $/kp/express/models/branch/columns.yaml
+        toolbarButtons: create|delete

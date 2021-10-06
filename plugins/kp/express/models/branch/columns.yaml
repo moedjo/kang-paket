@@ -1,0 +1,4 @@
+columns:
+    name:
+        label: Nama
+        type: switch

@@ -1,0 +1,10 @@
+name: Vendors
+form: $/kp/express/models/vendor/fields.yaml
+modelClass: KP\Express\Models\Vendor
+defaultRedirect: kp/express/vendors
+create:
+    redirect: 'kp/express/vendors/update/:id'
+    redirectClose: kp/express/vendors
+update:
+    redirect: kp/express/vendors
+    redirectClose: kp/express/vendors

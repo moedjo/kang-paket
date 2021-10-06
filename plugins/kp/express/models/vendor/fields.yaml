@@ -1,0 +1,9 @@
+fields:
+    name:
+        label: Text
+        span: auto
+        type: text
+    branches@update:
+        span: full
+        path: field_branches
+        type: partial

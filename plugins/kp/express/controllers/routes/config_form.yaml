@@ -1,0 +1,10 @@
+name: Routes
+form: $/kp/express/models/route/fields.yaml
+modelClass: KP\Express\Models\Route
+defaultRedirect: kp/express/routes
+create:
+    redirect: 'kp/express/routes/update/:id'
+    redirectClose: kp/express/routes
+update:
+    redirect: kp/express/routes
+    redirectClose: kp/express/routes
