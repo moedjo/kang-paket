@@ -18,10 +18,17 @@ class Region extends Model
     public $table = 'kp_express_regions';
     public $incrementing = false;
 
+
     /**
      * @var array Validation rules
      */
-    public $rules = [];
+    public $rules = [
+        'id' => 'required|numeric',
+        'name' => 'required',
+        'type' => 'required',
+        'latitude' => 'numeric',
+        'longitude' => 'numeric',
+    ];
 
     public $belongsTo = [
         'parent' => ['KP\Express\Models\Region', 'key' => 'parent_id']

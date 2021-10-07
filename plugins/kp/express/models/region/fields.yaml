@@ -3,7 +3,7 @@ fields:
         label: 'kp.express::lang.region.id'
         span: left
         placeholder: 'kp.express::lang.region.id'
-        type: text
+        type: number
     type:
         label: 'kp.express::lang.region.type'
         span: left
@@ -15,6 +15,21 @@ fields:
         span: left
         placeholder: 'kp.express::lang.region.name'
         type: text
+    latitude:
+        label: 'kp.express::lang.region.latitude'
+        span: left
+        placeholder: 'kp.express::lang.region.latitude'
+        type: number
+    longitude:
+        label: 'kp.express::lang.region.longitude'
+        span: right
+        placeholder: 'kp.express::lang.region.longitude'
+        type: number
+    postal_codes:
+        label: 'kp.express::lang.region.postal_codes'
+        placeholder: 'kp.express::lang.region.postal_codes'
+        type: taglist
+        separator: comma
     parent:
         label: 'kp.express::lang.region.parent'
         span: left

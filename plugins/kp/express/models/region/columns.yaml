@@ -19,3 +19,29 @@ columns:
     type:
         label: 'kp.express::lang.region.type'
         type: selectable
+    latitude:
+        label: 'kp.express::lang.region.latitude'
+        type: number
+        searchable: false
+        sortable: false
+    longitude:
+        label: 'kp.express::lang.region.latitude'
+        type: number
+        searchable: false
+        sortable: false
+    postal_codes:
+        label: 'kp.express::lang.region.postal_codes'
+        type: text
+        searchable: false
+        sortable: false
+        invisible: true
+    created_at:
+        label: 'kp.express::lang.field.created_at'
+        type: datetime
+        invisible: true
+        format: 'j M Y H:i:s'
+    updated_at:
+        label: 'kp.express::lang.field.updated_at'
+        type: datetime
+        invisible: true
+        format: 'j M Y H:i:s'

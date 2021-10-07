@@ -12,6 +12,13 @@
             'regions' => 'Regions',
         ],
     ],
+    'field' => [
+        'created_at' => 'Created Date',
+        'updated_at' => 'Updated Date',
+
+        'created_user' => 'Created User',
+        'updated_user' => 'Updated User'
+    ],
     'region' => [
         'region' => 'Region',
         'regions' => 'Regions',
@@ -23,6 +30,10 @@
         'province' => 'Province',
         'regency' => 'Regency',
         'district' => 'District',
+
+        'latitude' => 'Latitude',
+        'longitude' => 'Longitude',
+        'postal_codes' => 'Postal Codes',
     ],
     'vendor' => [
         'vendor' => 'Vendor',
