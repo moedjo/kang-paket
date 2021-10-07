@@ -17,6 +17,9 @@ class BuilderTableCreateKpExpressBranches extends Migration
 
             $table->string('name');
 
+            $table->double('international_commision', 5, 2)->unsigned()->default(0);
+            $table->double('domestic_commision', 5, 2)->unsigned()->default(0);
+
         });
     }
     

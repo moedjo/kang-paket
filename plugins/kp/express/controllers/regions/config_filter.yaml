@@ -1,0 +1,17 @@
+scopes:
+    parent:
+        label: 'kp.express::lang.region.parent'
+        type: text
+        scope: parentFilter
+    type:
+        label: 'kp.express::lang.region.type'
+        type: group
+        conditions: type in (:filtered)
+        modelClass: KP\Express\Models\Region
+        options: getTypeOptions
+    # name:
+    #     label: 'kp.express::lang.region.parent'
+    #     type: text
+    #     conditions: name like concat('%', :value, '%')
+
+      

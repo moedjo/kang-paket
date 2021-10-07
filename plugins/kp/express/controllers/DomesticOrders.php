@@ -17,6 +17,8 @@ class DomesticOrders extends Controller
         'kp_express_access_domestic_orders'
     ];
 
+   
+
     public function __construct()
     {
         parent::__construct();
@@ -30,6 +32,5 @@ class DomesticOrders extends Controller
         if ($model->order == null) {
             $model->order = new Order();
         }
-        $model->order->user_id = $this->user->id;
     }
 }

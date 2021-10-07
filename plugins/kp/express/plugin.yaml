@@ -21,15 +21,23 @@ permissions:
         tab: 'Master Data'
         label: kp_express_access_domestic_order
 navigation:
-    main-menu-item:
-        label: 'Menu Item'
-        icon: icon-life-ring
+    master-data:
+        label: 'kp.express::lang.menu.main_menu.master_data'
         url: /
+        icon: icon-life-ring
         sideMenu:
-            regions:
-                label: Wilayah
+            vendors:
+                label: 'kp.express::lang.menu.sub_menu.vendors'
                 url: kp/express/vendors
+                icon: icon-suitcase
+                permissions:
+                    - kp_express_vendors
+            regions:
+                label: 'kp.express::lang.menu.sub_menu.regions'
+                url: kp/express/regions
                 icon: icon-sitemap
+                permissions:
+                    - kp_express_regions
     main-menu-item2:
         label: 'Menu Item'
         url: kp/express/domesticorders

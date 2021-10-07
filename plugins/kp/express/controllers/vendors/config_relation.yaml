@@ -1,5 +1,5 @@
 branches:
-    label: 'Brand'
+    label: 'kp.express::lang.branch.branch'
     manage:
         form: $/kp/express/models/branch/fields.yaml
         list: $/kp/express/models/branch/columns.yaml

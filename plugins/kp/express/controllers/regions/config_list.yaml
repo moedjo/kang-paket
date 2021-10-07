@@ -1,0 +1,14 @@
+title: Regions
+modelClass: KP\Express\Models\Region
+list: $/kp/express/models/region/columns.yaml
+recordUrl: 'kp/express/regions/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: false
+showPageNumbers: false
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+filter: config_filter.yaml

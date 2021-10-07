@@ -20,16 +20,22 @@ class Vendor extends Model
     /**
      * @var array Validation rules
      */
-    public $rules = [];
+    public $rules = [
+        'name' => 'required|unique:kp_express_vendors',
+        'logo' => 'required'
+    ];
 
     public $hasMany = [
         'branches' => ['KP\Express\Models\Branch']
     ];
 
+    public $attachOne = [
+        'logo' => ['System\Models\File', 'public' => true]
+    ];
+
     public function filterFields($fields, $context = null)
     {
         if ($context == 'update') {
-            // $fields->id->disabled = true;
             $fields->name->disabled = true;
         }
     }

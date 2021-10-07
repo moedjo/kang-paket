@@ -1,0 +1,11 @@
+name: Regions
+modelClass: KP\Express\Models\Region
+form: $/kp/express/models/region/fields.yaml
+defaultRedirect: kp/express/regions
+create:
+    redirect: 'kp/express/regions/update/:id'
+    redirectClose: kp/express/regions
+update:
+    redirect: kp/express/regions
+    redirectClose: kp/express/regions
+preview: {  }

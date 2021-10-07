@@ -1,0 +1,21 @@
+columns:
+    id:
+        label: 'kp.express::lang.region.id'
+        type: number
+        searchable: true
+        sortable: true
+    name:
+        label: 'kp.express::lang.region.name'
+        type: text
+        searchable: true
+        sortable: true
+    parent_name:
+        label: 'kp.express::lang.region.parent'
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: parent
+    type:
+        label: 'kp.express::lang.region.type'
+        type: selectable

@@ -1241,7 +1241,9 @@ class Form extends WidgetBase
          * Apply specified data before filtering
          */
         if ($applyData) {
-            $this->prepareModelsToSave($targetModel, $applyData);
+            if (method_exists($targetModel, 'fill')) {
+                $this->prepareModelsToSave($targetModel, $applyData);
+            }
 
             foreach ($this->allFields as $field) {
                 $field->value = $this->getFieldValue($field, $applyData);

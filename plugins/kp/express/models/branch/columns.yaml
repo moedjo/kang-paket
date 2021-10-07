@@ -1,4 +1,9 @@
 columns:
+    id:
+        label: 'kp.express::lang.branch.id'
+        type: number
     name:
-        label: Nama
-        type: switch
+        label: 'kp.express::lang.branch.name'
+        type: text
+        searchable: true
+        sortable: true

@@ -1,5 +1,14 @@
 fields:
+    id:
+        label: 'kp.express::lang.branch.id'
+        span: left
+        placeholder: 'kp.express::lang.branch.id'
+        disabled: 1
+        context:
+            - update
+        type: text
     name:
-        label: Text
-        span: auto
+        label: 'kp.express::lang.branch.name'
+        span: left
+        placeholder: 'kp.express::lang.branch.name'
         type: text

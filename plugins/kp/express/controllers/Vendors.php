@@ -17,6 +17,8 @@ class Vendors extends Controller
     public $formConfig = 'config_form.yaml';
     public $relationConfig = 'config_relation.yaml';
 
+    public $bodyClass = 'compact-container';
+
     public $requiredPermissions = [
         'kp_express_vendors'
     ];
@@ -24,6 +26,6 @@ class Vendors extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('KP.Express', 'main-menu-item', 'regions');
+        BackendMenu::setContext('KP.Express', 'master-data', 'vendors');
     }
 }

@@ -1,9 +1,28 @@
 fields:
-    name:
-        label: Text
-        span: auto
+    id:
+        label: 'kp.express::lang.vendor.id'
+        span: left
+        placeholder: 'kp.express::lang.vendor.id'
+        disabled: 1
+        context:
+            - update
         type: text
-    branches@update:
+    name:
+        label: 'kp.express::lang.vendor.name'
+        span: left
+        placeholder: 'kp.express::lang.vendor.name'
+        type: text
+    branches:
         span: full
         path: field_branches
+        context:
+            - update
         type: partial
+secondaryTabs:
+    fields:
+        logo:
+            label: 'kp.express::lang.vendor.logo'
+            type: fileupload
+            mode: image
+            imageHeight: 500
+            imageWidth: 500

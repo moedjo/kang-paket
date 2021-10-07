@@ -26,8 +26,17 @@ class DomesticOrder extends Model
         'order' => ['KP\Express\Models\Order', 'name' => 'orderable']
     ];
 
+
+    public $belongsTo = [
+        'created_user' => [
+            'Backend\Models\User',
+            'key' => 'created_user_id'
+        ],
+    ];
+
     protected function beforeCreate()
     {
+
 
         // $order = new Order();
         // $order->receipt_number = '001';

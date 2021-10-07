@@ -13,12 +13,16 @@ class BuilderTableCreateKpExpressRegions extends Migration
             $table->integer('id')->unsigned();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
-            $table->integer('parent_id')->unsigned()->nullable();
-
-            $table->string('name');
-            //['country','province', 'regency', 'district']
             $table->string('type');
-        
+                
+            $table->string('name');
+            $table->integer('parent_id')->unsigned()->nullable();
+   
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            $table->string('postal_codes')->nullable();
+           
+           
             $table->primary('id');
         });
     }

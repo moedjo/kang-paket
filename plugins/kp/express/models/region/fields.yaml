@@ -1,0 +1,25 @@
+fields:
+    id:
+        label: 'kp.express::lang.region.id'
+        span: left
+        placeholder: 'kp.express::lang.region.id'
+        type: text
+    type:
+        label: 'kp.express::lang.region.type'
+        span: left
+        placeholder: 'kp.express::lang.region.type'
+        default: country
+        type: balloon-selector
+    name:
+        label: 'kp.express::lang.region.name'
+        span: left
+        placeholder: 'kp.express::lang.region.name'
+        type: text
+    parent:
+        label: 'kp.express::lang.region.parent'
+        span: left
+        placeholder: 'kp.express::lang.region.parent'
+        type: recordfinder
+        list: ~/plugins/kp/express/models/region/columns.yaml
+        modelClass: KP\Express\Models\Region
+        nameFrom: name

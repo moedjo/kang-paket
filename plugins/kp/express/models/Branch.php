@@ -32,7 +32,6 @@ class Branch extends Model
     public function filterFields($fields, $context = null)
     {
         if ($context == 'update') {
-            // $fields->id->disabled = true;
             $fields->name->disabled = true;
         }
     }
