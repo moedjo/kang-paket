@@ -383,7 +383,8 @@ class Form extends WidgetBase
         /*
          * Set the form variables and prepare the widget
          */
-        $this->applyFiltersFromModel($saveData);
+        $this->setFormValues($saveData);
+        $this->applyFiltersFromModel();
         $this->prepareVars();
 
         /**
