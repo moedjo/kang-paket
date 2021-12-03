@@ -36,14 +36,5 @@ class DomesticOrder extends Model
 
     protected function beforeCreate()
     {
-
-
-        // $order = new Order();
-        // $order->receipt_number = '001';
-        // $order->orderable = $this;
-        // $order->save();
-
-        // $this->order = $order;
-
     }
 }

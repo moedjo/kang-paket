@@ -117,17 +117,31 @@ class User extends UserBase
             $options = [];
         }
 
-        // Default is "mm" (Mystery man)
-        $default = array_get($options, 'default', 'mm');
-
+        // User has avatar defined
         if ($this->avatar) {
             return $this->avatar->getThumb($size, $size, $options);
         }
 
-        return '//www.gravatar.com/avatar/' .
-            md5(strtolower(trim($this->email))) .
-            '?s='. $size .
-            '&d='. urlencode($default);
+        // User has no avatar, look for default
+        $defaultConfig = Config::get('backend.default_avatar', 'gravatar');
+
+        // Default gravatar is "retro"
+        if ($defaultConfig === 'gravatar') {
+            $default = array_get($options, 'default', 'retro');
+
+            return '//www.gravatar.com/avatar/' .
+                md5(strtolower(trim($this->email))) .
+                '?s='. $size .
+                '&d='. urlencode($default);
+        }
+
+        // Default backend image
+        if ($defaultConfig === 'local') {
+            return Backend::skinAsset('assets/images/default-avatar.png');
+        }
+
+        // Custom URL
+        return $defaultConfig;
     }
 
     /**

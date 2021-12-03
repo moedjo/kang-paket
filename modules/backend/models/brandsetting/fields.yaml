@@ -5,16 +5,6 @@
 tabs:
     fields:
 
-        logo:
-            label: backend::lang.branding.logo
-            type: fileupload
-            commentAbove: backend::lang.branding.logo_description
-            mode: image
-            imageHeight: 170
-            tab: backend::lang.branding.brand
-            span: right
-            fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
-
         app_name:
             label: backend::lang.branding.app_name
             commentAbove: backend::lang.branding.app_name_description
@@ -25,7 +15,17 @@ tabs:
             label: backend::lang.branding.app_tagline
             commentAbove: backend::lang.branding.app_tagline_description
             tab: backend::lang.branding.brand
+            span: right
+
+        logo:
+            label: backend::lang.branding.logo
+            type: fileupload
+            commentAbove: backend::lang.branding.logo_description
+            mode: image
+            imageHeight: 170
+            tab: backend::lang.branding.brand
             span: left
+            fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
 
         favicon:
             label: backend::lang.branding.favicon
