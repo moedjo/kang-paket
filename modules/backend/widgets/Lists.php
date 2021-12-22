@@ -1372,12 +1372,13 @@ class Lists extends WidgetBase
     protected function evalSwitchTypeValue($record, $column, $value)
     {
         $contents = '';
+        $config = $column->config;
 
         if ($value) {
-            $contents = Lang::get('backend::lang.list.column_switch_true');
+            $contents = Lang::get($config['options'][1] ?? 'backend::lang.list.column_switch_true');
         }
         else {
-            $contents = Lang::get('backend::lang.list.column_switch_false');
+            $contents = Lang::get($config['options'][0] ?? 'backend::lang.list.column_switch_false');
         }
 
         return $contents;

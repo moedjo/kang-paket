@@ -581,7 +581,7 @@ class Controller
      */
     protected function initTwigEnvironment()
     {
-        $useCache = !Config::get('cms.enable_twig_cache', true);
+        $useCache = Config::get('cms.enable_twig_cache', true);
         $isDebugMode = System::checkDebugMode();
         $strictVariables = Config::get('cms.enable_twig_strict_variables', false);
         $strictVariables = $strictVariables ?? $isDebugMode;
