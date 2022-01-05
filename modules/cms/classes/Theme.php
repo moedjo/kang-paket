@@ -715,7 +715,17 @@ class Theme
      */
     public function secondLayerEnabled(): bool
     {
-        return $this->databaseLayerEnabled() || $this->hasParentTheme();
+        // All changes going to the database
+        if ($this->databaseLayerEnabled()) {
+            return true;
+        }
+
+        // Has an unlocked parent
+        if (($parent = $this->getParentTheme()) && !$parent->isLocked()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
