@@ -678,6 +678,8 @@ class Theme
     {
         // Globally
         $enableDbLayer = Config::get('cms.database_templates', false);
+
+        // @deprecated
         if ($enableDbLayer === null) {
             $enableDbLayer = !Config::get('app.debug', false);
         }
