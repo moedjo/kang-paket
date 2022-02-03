@@ -1,5 +1,24 @@
-.field-fileupload .upload-files-container {
-  max-height: 390px;
+.field-fileupload.size-tiny .upload-files-container {
+  max-height: 100px;
+  overflow: auto;
+}
+.field-fileupload.size-small .upload-files-container {
+  max-height: 200px;
+  overflow: auto;
+}
+.field-fileupload.size-large .upload-files-container {
+  max-height: 400px;
+  overflow: auto;
+}
+.field-fileupload.size-huge .upload-files-container {
+  max-height: 500px;
+  overflow: auto;
+}
+.field-fileupload.size-giant .upload-files-container {
+  max-height: 700px;
+  overflow: auto;
+}
+.field-fileupload.size-adaptive {
   overflow: auto;
 }
 .field-fileupload .upload-object {
@@ -119,23 +138,6 @@
   display: none;
 }
 .field-fileupload .upload-object.is-error .drag-handle {
-  display: none;
-}
-.field-fileupload.is-sortable {
-  position: relative;
-}
-.field-fileupload.is-sortable .upload-placeholder {
-  position: relative;
-  height: 0;
-  outline: 1px solid #e0e0e0 !important;
-  top: -3px;
-}
-.field-fileupload.is-sortable .upload-object.dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
-}
-.field-fileupload.is-sortable .upload-object.dragged .uploader-toolbar {
   display: none;
 }
 .field-fileupload.is-preview .upload-button,

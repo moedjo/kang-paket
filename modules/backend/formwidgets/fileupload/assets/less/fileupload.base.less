@@ -10,12 +10,35 @@
 // Shared
 //
 
-.field-fileupload {
+.fileupload-set-height(@size) {
     .upload-files-container {
-        max-height: 390px;
+        max-height: @size * 2;
         overflow: auto;
     }
+}
 
+.field-fileupload {
+    &.size-tiny {
+        .fileupload-set-height(@size-tiny);
+    }
+    &.size-small {
+        .fileupload-set-height(@size-small);
+    }
+    &.size-large {
+        .fileupload-set-height(@size-large);
+    }
+    &.size-huge {
+        .fileupload-set-height(@size-huge);
+    }
+    &.size-giant {
+        .fileupload-set-height(@size-giant);
+    }
+    &.size-adaptive {
+        overflow: auto;
+    }
+}
+
+.field-fileupload {
     //
     // Uploaded item
     //
@@ -74,7 +97,7 @@
             }
 
             .file-data-container {
-                background: @color-selection;
+                background: @brand-selection;
 
                 h4.filename, p {
                     color: white;
@@ -188,30 +211,6 @@
 
         .drag-handle {
             display: none;
-        }
-    }
-
-    //
-    // Sortable
-    //
-
-    &.is-sortable {
-        position: relative;
-
-        .upload-placeholder {
-            position: relative;
-            height: 0;
-            outline: 1px solid #e0e0e0 !important;
-            top: -3px;
-        }
-
-        .upload-object.dragged {
-            position: absolute;
-            opacity: .5;
-            z-index: 2000;
-            .uploader-toolbar {
-                display: none;
-            }
         }
     }
 
