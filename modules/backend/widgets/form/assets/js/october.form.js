@@ -168,7 +168,7 @@
 
             formEl.request(self.options.refreshHandler, {
                 data: refreshData
-            }).success(function() {
+            }).done(function() {
                 self.toggleEmptyTabs();
 
                 $.each(toRefresh.fields, function(key, field) {

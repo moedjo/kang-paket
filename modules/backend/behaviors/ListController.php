@@ -7,12 +7,12 @@ use ApplicationException;
 use Backend\Classes\ControllerBehavior;
 
 /**
- * Adds features for working with backend lists.
+ * ListController adds features for working with backend lists
  *
  * This behavior is implemented in the controller like so:
  *
  *     public $implement = [
- *         'Backend.Behaviors.ListController',
+ *         \Backend\Behaviors\ListController::class,
  *     ];
  *
  *     public $listConfig = 'config_list.yaml';
@@ -27,49 +27,49 @@ use Backend\Classes\ControllerBehavior;
 class ListController extends ControllerBehavior
 {
     /**
-     * @var array List definitions, keys for alias and value for configuration.
+     * @var array listDefinitions are keys for alias and value for configuration.
      */
     protected $listDefinitions;
 
     /**
-     * @var string The primary list alias to use. Default: list
+     * @var string primaryDefinition list alias to use. Default: list
      */
     protected $primaryDefinition;
 
     /**
-     * @var array List configuration, keys for alias and value for config objects.
+     * @var array listConfig are keys for alias and value for config objects.
      */
     protected $listConfig = [];
 
     /**
-     * @var \Backend\Classes\WidgetBase[] Reference to the list widget object.
+     * @var \Backend\Classes\WidgetBase[] listWidgets reference to the list widget object.
      */
     protected $listWidgets = [];
 
     /**
-     * @var \Backend\Classes\WidgetBase[] Reference to the toolbar widget objects.
+     * @var \Backend\Classes\WidgetBase[] toolbarWidgets reference to the toolbar widget objects.
      */
     protected $toolbarWidgets = [];
 
     /**
-     * @var \Backend\Classes\WidgetBase[] Reference to the filter widget objects.
+     * @var \Backend\Classes\WidgetBase[] filterWidgets reference to the filter widget objects.
      */
     protected $filterWidgets = [];
 
     /**
-     * @inheritDoc
+     * @var array requiredProperties in the controller
      */
     protected $requiredProperties = ['listConfig'];
 
     /**
-     * @var array Configuration values that must exist when applying the primary config file.
+     * @var array requiredConfig values that must exist when applying the primary config file.
      * - modelClass: Class name for the model
      * - list: List column definitions
      */
     protected $requiredConfig = ['modelClass', 'list'];
 
     /**
-     * @var array Visible actions in context of the controller
+     * @var array actions visible in context of the controller
      */
     protected $actions = ['index'];
 
@@ -100,7 +100,7 @@ class ListController extends ControllerBehavior
     }
 
     /**
-     * Creates all the list widgets based on the definitions.
+     * makeLists creates all the list widgets based on the definitions.
      * @return array
      */
     public function makeLists()
@@ -122,13 +122,12 @@ class ListController extends ControllerBehavior
             $definition = $this->primaryDefinition;
         }
 
-        $listConfig = $this->controller->listGetConfig($definition);
+        $listConfig = $this->config = $this->controller->listGetConfig($definition);
 
         /*
          * Create the model
          */
-        $class = $listConfig->modelClass;
-        $model = new $class;
+        $model = $this->createModel();
         $model = $this->controller->listExtendModel($model, $definition);
 
         /*
@@ -292,34 +291,34 @@ class ListController extends ControllerBehavior
             $widgetConfig->showTree = $config->showTree;
             $widgetConfig->treeExpanded = $config->treeExpanded ?? false;
             $widgetConfig->showReorder = false;
-            return $widgetConfig;
-        }
-
-        // New API
-        if (!isset($config->structure)) {
-            return null;
-        }
-
-        if (is_array($config->structure)) {
-            foreach ($config->structure as $key => $value) {
-                $widgetConfig->$key = $value;
+            if (!isset($config->structure)) {
+                return $widgetConfig;
             }
         }
 
-        return $widgetConfig;
+        // New API
+        if (isset($config->structure)) {
+            return $this->mergeConfig($widgetConfig, $config->structure);
+        }
+
+        return null;
     }
 
     /**
-     * Index Controller action.
+     * index controller action
      * @return void
      */
     public function index()
     {
-        $this->controller->pageTitle = $this->controller->pageTitle ?: Lang::get($this->getConfig(
-            'title',
-            'backend::lang.list.default_title'
-        ));
+        if (!$this->controller->pageTitle) {
+            $this->controller->pageTitle = Lang::get($this->getConfig(
+                'title',
+                'backend::lang.list.default_title'
+            ));
+        }
+
         $this->controller->bodyClass = 'slim-container';
+
         $this->makeLists();
     }
 
@@ -352,13 +351,12 @@ class ListController extends ControllerBehavior
             throw new ApplicationException(Lang::get('backend::lang.list.missing_parent_definition', compact('definition')));
         }
 
-        $listConfig = $this->controller->listGetConfig($definition);
+        $this->config = $this->controller->listGetConfig($definition);
 
         /*
          * Create the model
          */
-        $class = $listConfig->modelClass;
-        $model = new $class;
+        $model = $this->createModel();
         $model = $this->controller->listExtendModel($model, $definition);
 
         /*
@@ -387,6 +385,16 @@ class ListController extends ControllerBehavior
         }
 
         return $this->controller->listRefresh($definition);
+    }
+
+    /**
+     * createModel is an internal method used to prepare the list model object.
+     * @return October\Rain\Database\Model
+     */
+    protected function createModel()
+    {
+        $class = $this->config->modelClass;
+        return new $class;
     }
 
     /**
@@ -458,7 +466,7 @@ class ListController extends ControllerBehavior
     }
 
     /**
-     * Returns the widget used by this behavior.
+     * listGetWidget returns the widget used by this behavior.
      * @return \Backend\Classes\WidgetBase
      */
     public function listGetWidget($definition = null)
@@ -471,8 +479,9 @@ class ListController extends ControllerBehavior
     }
 
     /**
-     * Returns the configuration used by this behavior.
-     * @return \Backend\Classes\WidgetBase
+     * listGetConfig returns the configuration used by this behavior. You may override this
+     * method in your controller as an alternative to defining a listConfig property.
+     * @return object
      */
     public function listGetConfig($definition = null)
     {
@@ -480,7 +489,9 @@ class ListController extends ControllerBehavior
             $definition = $this->primaryDefinition;
         }
 
-        if (!$config = array_get($this->listConfig, $definition)) {
+        $config = array_get($this->listConfig, $definition);
+
+        if (!$config) {
             $config = $this->listConfig[$definition] = $this->makeConfig($this->listDefinitions[$definition], $this->requiredConfig);
         }
 

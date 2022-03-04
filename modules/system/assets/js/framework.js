@@ -146,7 +146,7 @@ if (window.jQuery.request !== undefined) {
                 /*
                  * Halt here if beforeUpdate() or data-request-before-update returns false
                  */
-                if (this.options.beforeUpdate.apply(this, [data, textStatus, jqXHR]) === false) {
+                if (options.beforeUpdate.apply(context, [data, textStatus, jqXHR]) === false) {
                     return;
                 }
 
@@ -175,6 +175,7 @@ if (window.jQuery.request !== undefined) {
                 updatePromise.done(function() {
                     $triggerEl.trigger('ajaxSuccess', [context, data, textStatus, jqXHR]);
                     options.evalSuccess && $.proxy(new Function('data', options.evalSuccess), $el.get(0))(data);
+                    options.afterUpdate.apply(context, [data, textStatus, jqXHR]);
                 })
 
                 return updatePromise;
@@ -429,6 +430,7 @@ if (window.jQuery.request !== undefined) {
         update: {},
         type : 'POST',
         beforeUpdate: function(data, textStatus, jqXHR) {},
+        afterUpdate: function(data, textStatus, jqXHR) {},
         evalBeforeUpdate: null,
         evalSuccess: null,
         evalError: null,

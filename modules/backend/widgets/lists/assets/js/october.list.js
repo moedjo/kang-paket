@@ -47,6 +47,8 @@
         this.$body.on('change', this.options.checkboxSelector, this.proxy(this.toggleBodyCheckbox));
         this.$head.on('change', this.options.checkboxSelector, this.proxy(this.toggleHeadCheckbox));
 
+        this.$el.one('dispose-control', this.proxy(this.dispose));
+
         this.updateUi();
     }
 
@@ -56,6 +58,7 @@
         this.$body.off('change', this.options.checkboxSelector, this.proxy(this.toggleBodyCheckbox));
         this.$head.off('change', this.options.checkboxSelector, this.proxy(this.toggleHeadCheckbox));
 
+        this.$el.off('dispose-control', this.proxy(this.dispose));
         this.$el.removeData('oc.listwidget');
 
         this.$el = null;

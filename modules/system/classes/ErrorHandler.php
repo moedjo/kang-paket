@@ -4,12 +4,12 @@ use Log;
 use View;
 use Lang;
 use System;
-use Cms\Classes\Theme;
-use Cms\Classes\Router;
 use Cms\Classes\Controller as CmsController;
 use October\Rain\Exception\ErrorHandler as ErrorHandlerBase;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Exception\SystemException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
 /**
  * ErrorHandler handles application exception events
@@ -22,18 +22,31 @@ class ErrorHandler extends ErrorHandlerBase
     /**
      * @inheritDoc
      */
-    // public function handleException(\Exception $proposedException)
-    // {
-    //     // The Twig runtime error is not very useful
-    //     if (
-    //         $proposedException instanceof \Twig\Error\RuntimeError &&
-    //         ($previousException = $proposedException->getPrevious()) &&
-    //         (!$previousException instanceof \Cms\Classes\CmsException)
-    //     ) {
-    //         $proposedException = $previousException;
-    //     }
-    //     return parent::handleException($proposedException);
-    // }
+    public function handleException(Exception $proposedException)
+    {
+        if (
+            $proposedException instanceof \Twig\Error\RuntimeError &&
+            ($previousException = $proposedException->getPrevious())
+        ) {
+            // The Twig runtime error is not very useful sometimes, so
+            // uncomment this for an alternative debugging option
+            // if (!$previousException instanceof \Cms\Classes\CmsException) {
+            //     $proposedException = $previousException;
+            // }
+
+            // Convert HTTP exceptions
+            if ($previousException instanceof HttpException) {
+                $proposedException = $previousException;
+            }
+
+            // Convert Not Found exceptions
+            if ($this->isNotFoundException($previousException)) {
+                $proposedException = $previousException;
+            }
+        }
+
+        return parent::handleException($proposedException);
+    }
 
     /**
      * beforeHandleError happens when we are about to display an error page to the user,
@@ -58,23 +71,33 @@ class ErrorHandler extends ErrorHandlerBase
             return null;
         }
 
-        if (
-            System::hasModule('Cms') &&
-            ($theme = Theme::getActiveTheme())
-        ) {
-            $router = new Router($theme);
-
-            // Use the default view if no "/error" URL is found.
-            if (!$router->findByUrl('/error')) {
-                return View::make('cms::error');
-            }
-
-            // Route to the CMS error page.
-            $controller = new CmsController($theme);
-            $result = $controller->run('/error');
+        if (System::hasModule('Cms')) {
+            $result = CmsController::pageError();
         }
         else {
             $result = View::make('system::error');
+        }
+
+        // Extract content from response object
+        if ($result instanceof \Symfony\Component\HttpFoundation\Response) {
+            $result = $result->getContent();
+        }
+
+        return $result;
+    }
+
+    /**
+     * handleCustomNotFound checks if using a custom 404 page, if so return the contents.
+     * Return NULL if a custom 404 is not set up.
+     * @return mixed 404 page contents.
+     */
+    public function handleCustomNotFound()
+    {
+        if (System::hasModule('Cms')) {
+            $result = CmsController::pageNotFound();
+        }
+        else {
+            $result = View::make('system::404');
         }
 
         // Extract content from response object

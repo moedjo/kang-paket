@@ -31,6 +31,7 @@
     SearchWidget.prototype.init = function() {
         this.$triggerEl.on('ajaxComplete', this.proxy(this.toggleClearButton));
         this.$clearBtn.on('click', this.proxy(this.clearInput));
+        this.$el.one('dispose-control', this.proxy(this.dispose));
 
         this.toggleClearButton();
     }
@@ -39,6 +40,7 @@
         this.$triggerEl.off('ajaxComplete', this.proxy(this.toggleClearButton));
         this.$el.off('ajaxSetup');
 
+        this.$el.off('dispose-control', this.proxy(this.dispose));
         this.$el.removeData('oc.searchwidget');
 
         this.$el = null;

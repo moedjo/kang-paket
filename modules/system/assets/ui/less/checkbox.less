@@ -297,7 +297,12 @@
             }
         }
         &[disabled] {
-            ~ span { background-color: #666666 !important; }
+            ~ span {
+                background-color: #bdc3c7 !important;
+                &, & + a {
+                    cursor: default;
+                }
+            }
         }
     }
 

@@ -79,10 +79,17 @@ class PluginInstall extends Command
 
         // Run migrations
         if (!$this->option('no-migrate')) {
-            $this->comment('Please migrate the database with the following command');
+            $this->comment("Executing: php artisan october:migrate");
             $this->output->newLine();
-            $this->line("* php artisan october:migrate");
-            $this->output->newLine();
+    
+            // Migrate database
+            $errCode = null;
+            passthru('php artisan october:migrate', $errCode);
+    
+            if ($errCode !== 0) {
+                $this->output->error('Migration failed. Check output above');
+                exit(1);
+            }
         }
     }
 

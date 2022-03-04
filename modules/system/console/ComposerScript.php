@@ -17,7 +17,7 @@ class ComposerScript
      */
     public static function postAutoloadDump(Event $event)
     {
-        // passthru('php artisan package:discover');
+        passthru('php artisan package:discover');
     }
 
     /**

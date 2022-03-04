@@ -11,7 +11,7 @@ use Backend\Classes\ControllerBehavior;
  * This behavior is implemented in the controller like so:
  *
  *     public $implement = [
- *         'Backend.Behaviors.ReorderController',
+ *         \Backend\Behaviors\ReorderController::class,
  *     ];
  *
  *     public $reorderConfig = 'config_reorder.yaml';
@@ -277,7 +277,7 @@ class ReorderController extends ControllerBehavior
     {
         if ($toolbarConfig = $this->getConfig('toolbar')) {
             $toolbarConfig = $this->makeConfig($toolbarConfig);
-            $toolbarWidget = $this->makeWidget('Backend\Widgets\Toolbar', $toolbarConfig);
+            $toolbarWidget = $this->makeWidget(\Backend\Widgets\Toolbar::class, $toolbarConfig);
         }
         else {
             $toolbarWidget = null;
